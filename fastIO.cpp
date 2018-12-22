@@ -1,8 +1,11 @@
-
-
 #define pc(x) putchar(x);
 inline void writeInt (int n)
 {
+    if(n<0)
+    {
+        pc('-');
+        return writeInt(-n);
+    }
     int N = n, rev, count = 0;
     rev = N;
     if (N == 0)
@@ -30,12 +33,46 @@ inline void writeInt (int n)
     while (count--)
         pc('0');
 }
+inline void writeLongLong (long long  n)
+{
+    if(n<0LL)
+    {
+        pc('-');
+        return writeLongLong(-n);
+    }
+    long long N = n, rev, count = 0;
+    rev = N;
+    if (N == 0LL)
+    {
+        pc('0');
+        pc('\n');
+        return ;
+    }
+    while ((rev % 10LL) == 0LL)
+    {
+        count++;    //obtain the count of the number of 0s
+        rev /= 10LL;
+    }
+    rev = 0LL;
+    while (N != 0LL)
+    {
+        rev = (rev<<3LL) + (rev<<1LL) + N % 10LL;    //store reverse of N in rev
+        N /= 10LL;
+    }
+    while (rev != 0LL)
+    {
+        pc((rev % 10LL) + '0');
+        rev /= 10LL;
+    }
+    while (count--)
+        pc('0');
+}
 inline void writeString(char *s)
 {
     while(*s) { pc(*s);s++;}
 }
 
-inline int next_int() {
+inline int nextInt() {
     int n = 0;
     char c = getchar();
     while (!('0' <= c && c <= '9')) {
@@ -47,8 +84,20 @@ inline int next_int() {
     }
     return n;
 }
+inline long long nextLongLong() {
+    long long n = 0LL;
+    char c = getchar();
+    while (!('0' <= c && c <= '9')) {
+        c = getchar();
+    }
+    while ('0' <= c && c <= '9') {
+        n = n * 10LL + c - '0';
+        c = getchar();
+    }
+    return n;
+}
 
-inline void next_string(char *s)
+inline void nextString(char *s)
 {
     int i=0;
     while(1)
@@ -60,3 +109,4 @@ inline void next_string(char *s)
         s[++i]=0;
     }
 }
+
