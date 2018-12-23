@@ -11,7 +11,6 @@ inline void writeInt (int n)
     if (N == 0)
     {
         pc('0');
-        pc('\n');
         return ;
     }
     while ((rev % 10) == 0)
@@ -45,7 +44,6 @@ inline void writeLongLong (long long  n)
     if (N == 0LL)
     {
         pc('0');
-        pc('\n');
         return ;
     }
     while ((rev % 10LL) == 0LL)
