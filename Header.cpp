@@ -73,7 +73,17 @@ template <class T> inline T modinverse(T a,T M)
 {
     return bigmod(a,M-2,M);
 }
-
+template < class T1,class T2>
+ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
+{
+    os<<"{"<<p.first<<","<<p.second<<"}";
+    return os;
+}
+template < class T1,class T2>
+pair <T1 ,T2> operator + ( const  pair < T1,T2 > &p1,const pair < T1,T2 > &p2)
+{
+    return make_pair(p1.first+p2.first,p1.second+p2.second);
+}
 /****** END OF HEADER ******/
 
 
