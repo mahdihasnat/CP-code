@@ -62,13 +62,18 @@ template <class T> inline T bigmod(T p,T e,T M)
     }
     return (T)ret;
 }
-
-template <class T> inline T gcd(T a,T b)
+template <class T> inline T bigpow(T p,T e)
 {
-    if(b==0)
-        return a;
-    return gcd(b,a%b);
+    ll ret = 1;
+    for(; e > 0; e >>= 1)
+    {
+        if(e & 1)
+            ret = (ret * p);
+        p = (p * p);
+    }
+    return (T)ret;
 }
+
 template <class T> inline T modinverse(T a,T M)
 {
     return bigmod(a,M-2,M);
