@@ -70,6 +70,19 @@ struct Matrix
         }
         return ans;
     }
+    friend ostream &operator<<(ostream &os,const Matrix &m)
+    {
+        os<<"{ ";
+        for(int i=0;i<DIMENSION;i++)
+        {
+            os<<"[";
+            for(int j=0;j<DIMENSION;j++) os<<" "<<m.a[i][j];
+            os<<"]";
+            os<<",";
+        }
+        os<<" }";
+        return os;
+    }
 
 } ONE;
 
