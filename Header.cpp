@@ -50,7 +50,7 @@ pair <T1,T2> operator + ( const  pair < T1,T2 > &p1,const pair < T1,T2 > &p2)
 const int N=1e5+5;
 const int oo=1e9+7;
 
-int main()
+int32_t main()
 {
     FastIO;
     IN;

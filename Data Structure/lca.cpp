@@ -1,13 +1,13 @@
-#define mx 50005
-int W[mx];
-int L[mx]; //লেভেল
-int P[mx][22]; //স্পার্স টেবিল
-int PW[mx][22]; //স্পার্স টেবিল
-int T[mx]; //প্যারেন্ট
-vector<pii>g[mx];
+#define N 50005
+int W[N];
+int L[N]; //lavel
+int P[N][22]; //sparse table
+int PW[N][22]; //sparse table
+int Parent[N]; //parent
+vector<pii>g[N];
 void dfs(int from,int u,int dep)
 {
-    T[u]=from;
+    Parent[u]=from;
     L[u]=dep;
     for(int i=0; i<(int)g[u].size(); i++)
     {
@@ -21,7 +21,7 @@ void dfs(int from,int u,int dep)
     }
 }
 
-int lca_query(int N, int p, int q) //N=নোড সংখ্যা
+int lca_query(int n, int p, int q) //n=number of nodes
 {
     int tmp, log, i;
 
@@ -48,28 +48,27 @@ int lca_query(int N, int p, int q) //N=নোড সংখ্যা
         if (P[p][i] != -1 && P[p][i] != P[q][i])
             p = P[p][i], q = P[q][i];
 
-    return T[p];
+    return Parent[p];
 }
 
-void lca_init(int N)
+void lca_init(int n)
 {
     memset (P,-1,sizeof(P)); //শুরুতে সবগুলো ঘরে -১ থাকবে
     memset (PW,0,sizeof(PW)); //শুরুতে সবগুলো ঘরে 0 থাকবে
     int i, j;
-    for (i = 0; i < N; i++)
-        P[i][0] = T[i],PW[i][0]=W[i];
+    for (i = 0; i < n; i++)
+        P[i][0] = Parent[i],PW[i][0]=W[i];
 
-    for (j = 1; 1 << j < N; j++)
-        for (i = 0; i < N; i++)
+    for (j = 1; 1 << j < n; j++)
+        for (i = 0; i < n; i++)
             if (P[i][j - 1] != -1)
             {
                 P[i][j] = P[P[i][j - 1]][j - 1];
                 PW[i][j]= max(W[P[i][j-1]],max(PW[i][j-1],PW[P[i][j-1]][j-1]));
             }
 
-
 }
-int kthParent(int N,int p,int k)
+int kthParent(int n,int p,int k)
 {
     int lg ;
     for( lg = 1 ; (1 << lg) <= L[p] ; ++lg )
@@ -85,7 +84,7 @@ int kthParent(int N,int p,int k)
     }
     return p;
 }
-int kthParentW(int N,int p,int k)
+int kthParentW(int n,int p,int k)
 {
     int lg ;
     for( lg = 1 ; (1 << lg) <= L[p] ; ++lg )
@@ -106,7 +105,7 @@ int kthParentW(int N,int p,int k)
 
 void initCase()
 {
-    for(int i=0; i<mx; i++)
+    for(int i=0; i<N; i++)
     {
         g[i].clear();
     }
