@@ -1,5 +1,3 @@
-/****** BISMILLAH HIR RAHMANIR RAHIM ******/
-
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -19,7 +17,6 @@ ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
     os<<"{"<<p.first<<","<<p.second<<"}";
     return os;
 }
-/****** END OF HEADER ******/
 
 const int N=1e5+5;
 const int oo=1e9+7;
