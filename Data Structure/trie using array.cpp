@@ -2,27 +2,31 @@
 
 //let f be the matrix representation of your trie
 
-//let f[k] be the list of links for the k-th node
+//let to[k] be the list of links for the k-th node
 
-//let f[k][x] = m, the node who represents the son of k-th node using x-th character, m = -1 is there is not a link.
+//let to[k][x] = m, the node who represents the son of k-th node using x-th character, m = -1 is there is not a link.
 
-int MAX = Max number of nodes
-int CHARSET = 52
-int ROOT = 0
+const int MAX = N ;
+const int CHARSET = 2;
+const int ROOT = 0;
 int sz = 1;
 
-int f[MAX][CHARSET]
+int to[MAX][CHARSET];
 
-void init() {
- memset(f,-1,sizeof f);
+void init()
+{
+    sz=1;
+    memset(to,-1,sizeof to);
 }
 
-void add(string & s) {
- int node = ROOT;
- for (int i = 0; i < s.size(); i++) {
-   if ( f[node][ s[i] ] == -1 )
-      f[node][ s[i] ] = sz++;
-   node = f[node][ s[i] ];
- }
+void add(const string & s)
+{
+    int node = ROOT;
+    for (int i = 0; i < s.size(); i++)
+    {
+        if ( to[node][ s[i] ] == -1 )
+            to[node][ s[i] ] = sz++;
+        node = to[node][ s[i] ];
+    }
 }
-//Notes: Root node is at f[0] sz is the numbers of nodes currently in trie
+//Notes: Root node is at to[0] sz is the numbers of nodes currently in trie

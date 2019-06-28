@@ -4,7 +4,7 @@ using namespace std;
 typedef long long ll;
 typedef pair <int, int> pii;
 
-#define NL cout<<endl;
+#define NL cout<<"\n";
 #define ALL(a) a.begin(), a.end()
 #define DBG(a) cout<< #a <<" --> "<<(a)<<endl;
 #define FastIO ios::sync_with_stdio(false); cin.tie(0);cout.tie(0)
