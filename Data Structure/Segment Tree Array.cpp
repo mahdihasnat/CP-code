@@ -1,5 +1,9 @@
 const int N= 1e5+5;
 int value[4*N];
+int func(int i,int j)
+{
+    return i+j;
+}
 void UpdatePoint(int node , int ss, int se, int u, int diff)
 {
     int mid = ss+(se-ss)/2;
@@ -13,23 +17,23 @@ void UpdatePoint(int node , int ss, int se, int u, int diff)
         return;
     }
 
-    UpdatePoint(2*node, ss, mid, u, diff);
-    UpdatePoint(2*node+1, mid+1, se, u, diff);
+    UpdatePoint(node<<1, ss, mid, u, diff);
+    UpdatePoint((node<<1)+1, mid+1, se, u, diff);
 
-    value[node]=value[2*node]+value[2*node+1];
+    value[node]=func(value[node<<1],value[(node<<1)+1]);
 
 }
-int GetSum(int node,int ss, int se, int qs, int qe)
+int Getfunc(int node,int ss, int se, int qs, int qe)
 {
     int mid = ss+(se-ss)/2;
 
-     if (ss>se || ss>qe || se<qs)
+     if (ss>se || ss>qe || se<qs || qs>qe)
         return 0;
 
     if (ss>=qs && se<=qe)
         return value[node];
 
-    return GetSum(2*node,ss,mid,qs,qe)+GetSum(2*node+1,mid+1,se,qs,qe);
+    return func(Getfunc(node<<1,ss,mid,qs,qe),Getfunc((node<<1)+1,mid+1,se,qs,qe));
 }
 
 void Build(int node,int *a,int ss,int se)
@@ -40,7 +44,7 @@ void Build(int node,int *a,int ss,int se)
         return ;
     }
     int mid = ss+(se-ss)/2;
-    Build(2*node,a,ss,mid);
-    Build(2*node+1,a,mid+1,se);
-    value[node]=value[2*node]+value[2*node+1];
+    Build(node<<1,a,ss,mid);
+    Build((node<<1)+1,a,mid+1,se);
+    value[node]=func(node<<1,(node<<1)+1);
 }

@@ -18,7 +18,7 @@ ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
     return os;
 }
 
-const int N=1e5+5;
+const int N=3e5+5;
 const int oo=1e9+7;
 
 int32_t main()
