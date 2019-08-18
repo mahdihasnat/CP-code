@@ -1,3 +1,5 @@
+///****In the name of Allah, most Gracious, most Compassionate****//
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -24,8 +26,6 @@ const int oo=1e9+7;
 int32_t main()
 {
     FastIO;
-    IN;
-    OUT;
     int T,cs=0;
     cin>>T;
     while(T--)

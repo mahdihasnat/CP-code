@@ -46,5 +46,5 @@ void Build(int node,int *a,int ss,int se)
     int mid = ss+(se-ss)/2;
     Build(node<<1,a,ss,mid);
     Build((node<<1)+1,a,mid+1,se);
-    value[node]=func(node<<1,(node<<1)+1);
+    value[node]=func(value[node<<1],value[(node<<1)+1]);
 }
