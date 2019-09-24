@@ -9,10 +9,10 @@ H_inverse = {{-1, 1}, {1, 0}}
 H         = {{1, 1}, {1, 0}}
 H_inverse = {{0, 1}, {1, -1}}
 ***************************/
-//#define bitwiseXOR 1
-#define bitwiseAND 2
+#define bitwiseXOR 1
+//#define bitwiseAND 2
 //#define bitwiseOR 3
-const ll MOD = 1000000009;
+const ll MOD = 1e9+7;
 
 void FWHT(vector< ll >&p, bool inverse = false)
 {
@@ -26,8 +26,8 @@ void FWHT(vector< ll >&p, bool inverse = false)
                 ll v = p[i+len+j];
 
                 #ifdef bitwiseXOR
-                p[i+j] = u+v;
-                p[i+len+j] = u-v;
+                p[i+j] =( u+v)%MOD;
+                p[i+len+j] = (u-v)%MOD;
                 #endif // bitwiseXOR
 
                 #ifdef bitwiseAND
@@ -56,8 +56,9 @@ void FWHT(vector< ll >&p, bool inverse = false)
     #ifdef bitwiseXOR
     if (inverse) {
         for (ll i = 0; i < n; i++) {
-            assert(p[i]%n==0);
-            p[i] /= n;
+//            assert(p[i]%n==0);
+//            p[i]/=n;
+            p[i]  = p[i] * mod_inverse(n,MOD) % MOD;
         }
     }
     #endif // bitwiseXOR
