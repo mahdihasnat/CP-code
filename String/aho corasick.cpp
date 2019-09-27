@@ -53,7 +53,7 @@ void match(char * text)
     int now=0;
     for(int i = 0; text[i]; i++) {
 		char c = text[i]-'a'+1 ;
-		while(now!=-1 && next[now][c]!=-1)
+		while(now!=-1 && next[now][c]==-1) /// test this line
             now = next[now][0];
         if(now==-1) now=0;
         else
