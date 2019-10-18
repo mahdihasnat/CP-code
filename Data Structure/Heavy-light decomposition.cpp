@@ -33,7 +33,7 @@ void update(int idx, int x,int nn)
 	}
 }
 
-int decompose(int v, int h) {
+void decompose(int v, int h) {
     head[v] = h, pos[v] = cur_pos;
     update(cur_pos,value[v],n+1);
     cur_pos++;
