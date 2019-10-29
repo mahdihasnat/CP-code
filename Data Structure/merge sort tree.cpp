@@ -3,7 +3,7 @@ const int oo=1e9+7;
 vector< pii  > value[4*N];
 int a[N];
 
-void merge(const vector<pii> &a, const vector<pii> &b, vector<pii > &res)
+void merge(const vector<pii> &a, const vector<pii> &b, vector<pii > &res)  // wrong algo
 {
     res.clear();
     int j=0;

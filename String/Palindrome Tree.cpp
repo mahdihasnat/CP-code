@@ -36,7 +36,7 @@ struct node {
 
 int len;
 char s[MAXN];
-node tree[MAXN]; 
+node tree[MAXN];
 int num;            // node 1 - root with len -1, node 2 - root with len 0
 int suff;           // max suffix palindrome
 long long ans;
@@ -47,11 +47,11 @@ bool addLetter(int pos) {
 
     while (true) {
         curlen = tree[cur].len;
-        if (pos - 1 - curlen >= 0 && s[pos - 1 - curlen] == s[pos])     
-            break;  
+        if (pos - 1 - curlen >= 0 && s[pos - 1 - curlen] == s[pos])
+            break;
         cur = tree[cur].sufflink;
-    }       
-    if (tree[cur].next[let]) {  
+    }
+    if (tree[cur].next[let]) {
         suff = tree[cur].next[let];
         return false;
     }
@@ -73,8 +73,8 @@ bool addLetter(int pos) {
         if (pos - 1 - curlen >= 0 && s[pos - 1 - curlen] == s[pos]) {
             tree[num].sufflink = tree[cur].next[let];
             break;
-        }       
-    }           
+        }
+    }
 
     tree[num].num = 1 + tree[tree[num].sufflink].num;
 

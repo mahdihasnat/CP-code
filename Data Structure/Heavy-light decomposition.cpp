@@ -58,13 +58,14 @@ int query_bit(int idx)
 }
 
 
-void init_hld() {
-    memset(Tree,0,sizeof Tree);
+void init_hld(int root,int n)
+{
+    memset(Tree,-1,sizeof Tree);
     memset(heavy,-1,sizeof heavy);
     cur_pos = 1;
-    parent[0]=-1;
-    assert(dfs(0)==n);
-    decompose(0, 0);
+    parent[root]=-1;
+    assert(dfs(root)==n);
+    decompose(root, root);
 }
 int segment_tree_query(int x,int y)
 {
@@ -81,6 +82,7 @@ int query_hld(int a, int b) {
     }
     if (depth[a] > depth[b])
         swap(a, b);
+    /// now a is the lca or quert(a,b)
     int last_heavy_path_max = segment_tree_query(pos[a], pos[b]);
     res +=  last_heavy_path_max;
     return res;

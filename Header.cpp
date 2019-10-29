@@ -6,12 +6,21 @@ using namespace std;
 typedef long long ll;
 typedef pair <int, int> pii;
 
-#define NL cout<<"\n";
 #define ALL(a) a.begin(), a.end()
-#define DBG(a) cout<< #a <<" --> "<<(a)<<endl;
 #define FastIO ios::sync_with_stdio(false); cin.tie(nullptr);cout.tie(nullptr)
 #define IN freopen("input.txt","r+",stdin)
 #define OUT freopen("output.txt","w+",stdout)
+
+
+#define TEST
+
+#ifdef TEST
+    #define DBG(a) cout<< #a <<" --> "<<(a)<<endl;
+    #define NL cout<<"\n";
+#else
+    #define DBG(a) ;
+    #define NL cout<<"\n";
+#endif // TEST
 
 template < class T1,class T2>
 ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
