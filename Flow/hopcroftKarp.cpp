@@ -1,3 +1,5 @@
+#define NIL 0
+#define INF oo
 // A class to represent Bipartite graph for Hopcroft
 // Karp implementation
 class BipGraph
@@ -18,6 +20,7 @@ class BipGraph
 public:
     BipGraph(int m, int n); // Constructor
     void addEdge(int u, int v); // To add edge
+    void removeEdge(int u, int v); // To remove edge
 
     // Returns true if there is an augmenting path
     bool bfs();
@@ -173,4 +176,9 @@ BipGraph::BipGraph(int m, int n)
 void BipGraph::addEdge(int u, int v)
 {
     adj[u].push_back(v); // Add u to vâ��s list.
+}
+// To remove edge from u to v and v to u
+void BipGraph::removeEdge(int u, int v)
+{
+    adj[u].pop_back(); // remove v from u â��s list.
 }
