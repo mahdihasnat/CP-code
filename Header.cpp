@@ -11,16 +11,8 @@ typedef pair <int, int> pii;
 #define IN freopen("input.txt","r+",stdin)
 #define OUT freopen("output.txt","w+",stdout)
 
-
-#define TEST
-
-#ifdef TEST
-    #define DBG(a) cout<< #a <<" --> "<<(a)<<endl;
-    #define NL cout<<"\n";
-#else
-    #define DBG(a) ;
-    #define NL cout<<"\n";
-#endif // TEST
+#define DBG(a) cout<< #a <<" --> "<<(a)<<endl
+#define NL cout<<"\n"
 
 template < class T1,class T2>
 ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
