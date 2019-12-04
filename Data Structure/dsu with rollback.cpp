@@ -1,9 +1,13 @@
 int parent[N];
 int size[N];
-int ans[N];
 
 stack < pair<int, int  > > added;
 
+void make_set(int v)
+{
+    parent[v] = v;
+    size[v] = 1;
+}
 
 inline int find_set(int u)
 {
