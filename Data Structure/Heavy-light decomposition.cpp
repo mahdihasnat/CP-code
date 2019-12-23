@@ -60,7 +60,7 @@ int query_bit(int idx)
 
 void init_hld(int root,int n)
 {
-    memset(Tree,-1,sizeof Tree);
+    memset(Tree, 0,sizeof Tree);
     memset(heavy,-1,sizeof heavy);
     cur_pos = 1;
     parent[root]=-1;
