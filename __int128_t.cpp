@@ -1,3 +1,10 @@
+namespace my_gcc_ints {
+#pragma GCC diagnostic push
+#pragma GCC diagnostic ignored "-Wpedantic"
+    using int128 = __int128;
+#pragma GCC diagnostic pop
+}
+
 
 std::ostream&
 operator<<( std::ostream& dest, __int128_t value )
