@@ -5,6 +5,7 @@ struct Hash
     ll a[NUMBER_OF_HASH];
     Hash operator + (const ll &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = a[i] + h;  return ret;}
     Hash operator + (const Hash &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = a[i] + h.a[i];  return ret;}
+    Hash operator ^ (const Hash &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = a[i] ^ h.a[i];  return ret;}
     Hash operator - (const Hash &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = a[i] - h.a[i];  return ret;}
     Hash operator * (const Hash &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = a[i] * h.a[i];  return ret;}
     Hash operator % (const Hash &h ) { Hash ret ; for(int i=0;i<NUMBER_OF_HASH;i++) ret.a[i] = (a[i] % h.a[i]+h.a[i])%h.a[i];  return ret;}
