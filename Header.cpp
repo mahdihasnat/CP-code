@@ -1,4 +1,8 @@
-///****In the name of Allah, most Gracious, most Compassionate****//
+///****In the name of ALLAH, most Gracious, most Compassionate****//
+
+#pragma GCC target ("avx2")
+#pragma GCC optimization ("O3")
+#pragma GCC optimization ("unroll-loops")
 
 #include <bits/stdc++.h>
 using namespace std;
@@ -7,12 +11,12 @@ typedef long long ll;
 typedef pair <int, int> pii;
 
 #define ALL(a) a.begin(), a.end()
-#define FastIO ios::sync_with_stdio(false); cin.tie(nullptr);cout.tie(nullptr)
+#define FastIO ios::sync_with_stdio(false); cin.tie(0);cout.tie(0)
 #define IN freopen("input.txt","r+",stdin)
 #define OUT freopen("output.txt","w+",stdout)
 
-#define DBG(a) cout<< #a <<" --> "<<(a)<<endl
-#define NL cout<<"\n"
+#define DBG(a) cerr<< "line "<<__LINE__ <<" : "<< #a <<" --> "<<(a)<<endl
+#define NL cout<<endl
 
 template < class T1,class T2>
 ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
