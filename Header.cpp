@@ -16,7 +16,7 @@ typedef pair <int, int> pii;
 #define OUT freopen("output.txt","w+",stdout)
 
 #define DBG(a) cerr<< "line "<<__LINE__ <<" : "<< #a <<" --> "<<(a)<<endl
-#define NL cout<<endl
+#define NL cerr<<endl
 
 template < class T1,class T2>
 ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
