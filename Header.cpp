@@ -1,9 +1,5 @@
 ///****In the name of ALLAH, most Gracious, most Compassionate****//
 
-#pragma GCC target ("avx2")
-#pragma GCC optimization ("O3")
-#pragma GCC optimization ("unroll-loops")
-
 #include <bits/stdc++.h>
 using namespace std;
 
