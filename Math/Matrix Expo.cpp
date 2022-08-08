@@ -86,6 +86,12 @@ struct Matrix
 
 } ONE;
 
+void init()
+{
+    for(int i=0;i<DIMENSION;i++)
+        ONE[i][i]=1;
+}
+
 Matrix bin(Matrix A, long long n)
 {
     Matrix B = ONE;
