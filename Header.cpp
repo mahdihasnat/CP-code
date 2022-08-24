@@ -20,6 +20,15 @@ ostream &operator <<(ostream &os,const pair < T1,T2 > &p)
     os<<"{"<<p.first<<","<<p.second<<"}";
     return os;
 }
+template <class T , size_t N>
+ostream &operator <<(ostream &os,const array <T,N> &a)
+{
+	os<<"{";
+	for(auto x: a)
+		os<<x<<" ";
+	os<<"}";
+	return os;
+}
 
 const int N=3e5+5;
 const int oo=1e9+7;
