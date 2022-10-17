@@ -1,71 +1,94 @@
-vector<pii> g[N]; /// input connected undirected graph
-
-int tin[N];
-int low[N];
-int dfs_timer;
-int total_tree_node ;
-
-vector <int > nodes[N]; /// all input nodes contained in tree node u
-int to_node[N]; /// to_node[u]  is tree node which contains u
-vector<pii> tree[N]; /// edge of block-cut tree , output tree
-
-
-void add_bridge_edge(int u,int v,ll w)
+// tested on LOJ-1308 Ant Network
+struct BlockCutTree
 {
-    tree[u].emplace_back(v , w);
-    tree[v].emplace_back(u , w);
-}
+	vector<int> g[N];// input graph
+	vector<int> g2[N]; // output graph
+	int sz_tree=0;
+	vector<int> comp[N]; // nodes that belong i'th blocks without bridge vertex
+	int to_comp[N];
+	bool is_bridge[N];
+	int tin[N];
+	int low[N];
+	int timer=1;
+	void dfs_bridge(int u,int p=-1)
+	{
+		tin[u]=low[u]=timer++;
+		is_bridge[u]=0;
+		int child=0;
+		for(int v: g[u])
+		{
+			if(v==p) continue;
+			if(tin[v]==-1)
+			{
+				child++;
+				dfs_bridge(v,u);
+				low[u]=min(low[u],low[v]);
+				if(low[v] >= tin[u] and p!=-1)
+				{
+					is_bridge[u]=1;
+				}
+			}
+			else low[u]=min(low[u],tin[v]);
+		}
+		if(p==-1 and child >1)
+			is_bridge[u]=1;
+	}
 
-void dfs1(int u,int p = -1)
-{
-    low[u] = tin[u] = dfs_timer++;
-    for(pii vw: g[u])
-    {
-        int v = vw.first;
-        ll w = vw.second;
+	void add_component(int u,int cid)
+	{
+		to_comp[u]=cid;
+		comp[cid].push_back(u);
 
-        if(v==p) continue;
+		if(is_bridge[u]) return;
 
-        if(tin[v] == -1)
-        {
-            dfs1(v,u);
-        }
-        low[u] = min(low[u] , low[v]);
-    }
-}
+		for(int v: g[u])
+		{
+			if(is_bridge[v]) continue;
+			if(to_comp[v]==-1)
+			{
+				add_component(v,cid);
+			}
+		}
+	}
 
-void dfs2(int u,int p = -1)
-{
-    if(low[u] == tin[u])
-    {
-        to_node[u] = ++total_tree_node;
-    }
-    else to_node[u] = to_node[p];
+	void decompose(int n)
+	{
+		memset(tin,-1,sizeof(tin[0])*(n+1));
+		timer=1;
+		for(int i=1;i<=n;i++)
+		{
+			if(tin[i]==-1)
+			{
+				dfs_bridge(i);
+			}
+		}
 
-    for(pii vw: g[u])
-    {
-        int v = vw.first;
-        ll w = vw.second;
-
-        if(v==p) continue;
-
-        if(to_node[v] == -1)
-            dfs2(v,u);
-
-        if(low[v] > tin[u])
-        {
-            add_bridge_edge(to_node[u] , to_node[v]  , w);
-        }
-    }
-    nodes[to_node[u]].push_back(u);
-}
-
-void block_cut_tree()
-{
-    dfs_timer = 1;
-    total_tree_node = 0;
-    memset(tin , - 1 , sizeof tin);
-    memset(to_node , -1 , sizeof to_node);
-    dfs1(1);
-    dfs2(1);
-}
+		memset(to_comp,-1,sizeof(to_comp[0])*(n+1));
+		sz_tree=0;
+		for(int i=1;i<=n;i++)
+		{
+			if(to_comp[i]==-1)
+			{
+				comp[sz_tree].clear();
+				add_component(i,sz_tree++);
+			}
+		}
+		// DBG(sz_tree);
+		for(int i=0;i<sz_tree;i++) g2[i].clear();
+		for(int u=1;u<=n;u++)
+		{
+			assert(to_comp[u]!=-1);
+			for(int v: g[u])
+			{
+				assert(to_comp[v]!=-1);
+				if(to_comp[u]!=to_comp[v])
+				{
+					g2[to_comp[u]].push_back(to_comp[v]);
+					g2[to_comp[v]].push_back(to_comp[u]);
+				}
+			}
+		}
+		for(int i=0;i<sz_tree;i++)
+			sort(ALL(g2[i])),g2[i].erase(unique(ALL(g2[i])),g2[i].end());
+	}
+};
