@@ -1,15 +1,15 @@
-long long bigmod ( long long a, long long p, long long m )
+int bigmod ( int a, ll p, int m )
 {
-    long long res = 1;
-    long long x = a;
+    int res = 1;
+    int x = a;
 
     while ( p )
     {
         if ( p & 1 ) //p is odd
         {
-            res = ( res * x ) % m;
+            res = ( res *1LL* x ) % m;
         }
-        x = ( x * x ) % m;
+        x = ( x *1LL* x ) % m;
         p = p >> 1;
     }
 
