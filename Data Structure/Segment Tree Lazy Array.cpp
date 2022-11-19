@@ -38,7 +38,8 @@ void UpdateRange(int u , int ss, int se, int us,int ue, int diff)
 }
 int GetFunc(int u,int ss, int se, int qs, int qe)
 {
-
+    propagate(u,ss,se);
+    
     int mid = ss+(se-ss)/2;
 
     if (ss>se || ss>qe || se<qs)
