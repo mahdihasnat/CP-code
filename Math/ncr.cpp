@@ -32,6 +32,7 @@ ll fact_inv[N];
 
 ll ncr(ll n,ll r)
 {
+    if(r<0 or r>n) return 0;
 	return fact[n]*fact_inv[r]%oo * fact_inv[n-r] % oo;
 }
 void init()
