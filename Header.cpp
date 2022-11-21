@@ -30,6 +30,16 @@ ostream &operator <<(ostream &os,const array <T,N> &a)
 	return os;
 }
 
+template <class T>
+ostream &operator <<(ostream &os,const vector<T> &a)
+{
+	os<<"{ ";
+	for(auto x: a)
+		os<<x<<" ";
+	os<<"}";
+	return os;
+}
+
 const int N=3e5+5;
 const int oo=1e9+7;
 
