@@ -5,7 +5,7 @@ cnt=1
 while true; do
 	./test.out > input.txt
 	./cf.out < input.txt > output.txt
-	./lightoj.o < input.txt > output2.txt
+	./lightoj.out < input.txt > output2.txt
 	
 	if [[ $(diff output.txt output2.txt) ]]
 	then
