@@ -40,6 +40,8 @@ ostream &operator <<(ostream &os,const vector<T> &a)
 	return os;
 }
 
+mt19937 rng(chrono::steady_clock::now().time_since_epoch().count());
+
 const int N=3e5+5;
 const int oo=1e9+7;
 
