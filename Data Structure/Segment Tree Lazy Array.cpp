@@ -4,7 +4,7 @@ int lazy[4*N];
 
 void propagate(int u,int ss,int se)
 {
-    value[u]+= (ss-se+1) * lazy[u];
+    value[u]+= (se-ss+1) * lazy[u];
     if(ss!=se)
         lazy[u<<1] += lazy[u] , lazy[u<<1|1]+= lazy[u];
     lazy[u] = 0;
