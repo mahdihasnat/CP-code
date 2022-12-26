@@ -354,6 +354,34 @@ namespace Convex {
     return -1;
   }
 
+	// tested on https://codeforces.com/contest/87/problem/E
+	void minkowski(Polygon a,Polygon b, Polygon &c)
+	{
+		auto reorder_convex =[](Polygon &a)
+		{
+			int pos = 0;
+			for(int i=0;i<a.size();i++)
+			{
+				int cmp = dcmp(a[i].y-a[pos].y);
+				if(cmp < 0 || (cmp == 0 && dcmp(a[i].x-a[pos].x) < 0))
+					pos = i;
+			}
+			rotate(a.begin(),a.begin()+pos,a.end());
+		};
+		reorder_convex(a); reorder_convex(b);
+		a.push_back(a[0]); b.push_back(b[0]);
+		a.push_back(a[1]); b.push_back(b[1]);
+		int i=0,j=0;
+		while(i < a.size()-2 || j < b.size()-2)
+		{
+			c.push_back(a[i]+b[j]);
+			int cmp = dcmp(cross(a[i+1]-a[i],b[j+1]-b[j]));
+			if(cmp>=0) i++;
+			if(cmp<=0) j++;
+		}
+	}
+
+
   // Extreme Point for a direction is the farthest point in that direction
   // O'Rourke, page 270, http://crtl-i.com/PDF/comp_c.pdf
   // also https://codeforces.com/blog/entry/48868
