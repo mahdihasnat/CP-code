@@ -25,7 +25,7 @@ void UpdatePoint(int node , int ss, int se, int u, int diff)
 }
 int Getfunc(int node,int ss, int se, int qs, int qe)
 {
-    	propagate(u,ss,se);
+    propagate(u,ss,se);
 
     int mid = ss+(se-ss)/2;
 
